@@ -8,12 +8,30 @@ else:
 # This class defines a complete listener for a parse tree produced by TestParser.
 class TestListener(ParseTreeListener):
 
-    # Enter a parse tree produced by TestParser#r.
-    def enterR(self, ctx:TestParser.RContext):
+    # Enter a parse tree produced by TestParser#s.
+    def enterS(self, ctx:TestParser.SContext):
         pass
 
-    # Exit a parse tree produced by TestParser#r.
-    def exitR(self, ctx:TestParser.RContext):
+    # Exit a parse tree produced by TestParser#s.
+    def exitS(self, ctx:TestParser.SContext):
+        pass
+
+
+    # Enter a parse tree produced by TestParser#exp.
+    def enterExp(self, ctx:TestParser.ExpContext):
+        pass
+
+    # Exit a parse tree produced by TestParser#exp.
+    def exitExp(self, ctx:TestParser.ExpContext):
+        pass
+
+
+    # Enter a parse tree produced by TestParser#op.
+    def enterOp(self, ctx:TestParser.OpContext):
+        pass
+
+    # Exit a parse tree produced by TestParser#op.
+    def exitOp(self, ctx:TestParser.OpContext):
         pass
 
 
