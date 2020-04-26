@@ -1,0 +1,1 @@
+# A javascript-like lambda python
