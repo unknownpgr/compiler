@@ -38,7 +38,7 @@ class TestParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "';'", "'('", "')'", "'+'", "'-'", "'*'", 
+    literalNames = [ "<INVALID>", "';'", "'('", "')'", "'*'", "'+'", "'-'", 
                      "'/'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 

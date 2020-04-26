@@ -12,11 +12,11 @@ class TestListener(ParseTreeListener):
 
     # Enter a parse tree produced by TestParser#s.
     def enterS(self, ctx: TestParser.SContext):
-        print('EnterS')
+        pass
 
     # Exit a parse tree produced by TestParser#s.
     def exitS(self, ctx: TestParser.SContext):
-        print('ExitS')
+        pass
 
     # Enter a parse tree produced by TestParser#s_.
     def enterS_(self, ctx: TestParser.S_Context):
@@ -28,11 +28,12 @@ class TestListener(ParseTreeListener):
 
     # Enter a parse tree produced by TestParser#exp.
     def enterExp(self, ctx: TestParser.ExpContext):
-        print('EnterExp')
+        print(ctx.getText())
+        pass
 
     # Exit a parse tree produced by TestParser#exp.
     def exitExp(self, ctx: TestParser.ExpContext):
-        print('ExitExp')
+        pass
 
     # Enter a parse tree produced by TestParser#op.
     def enterOp(self, ctx: TestParser.OpContext):
