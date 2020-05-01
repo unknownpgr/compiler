@@ -1,5 +1,5 @@
 import sys
-from antlr4 import *
+from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from TestLexer import TestLexer
 from TestParser import TestParser
 from TestListener import TestListener
@@ -13,3 +13,4 @@ print(tree.toStringTree(recog=parser))
 tl = TestListener()
 walker = ParseTreeWalker()
 walker.walk(tl, tree)
+print(tl.output)

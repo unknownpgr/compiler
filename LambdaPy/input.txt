@@ -1,1 +1,9 @@
-(2+4)*33/7+4*3
+int16 a;
+a = {
+    int8 a = 3
+    int8 b = 3
+    int8 c = a*b+(a + b)
+    c()
+
+    return d = (int8 (a,b,c){int8 a=d()()})()
+}
