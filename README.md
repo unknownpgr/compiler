@@ -43,5 +43,12 @@ control(p1)
     - 그런데 고민되는 점은, 만약 이럴 경우 scope는 어떻게 되냐는 점이다.
     - 결론 : 눈에 보이는 변수의 스코프만 고려하자.
 
-#### 2020 /04 / 29
+#### 2020 / 04 / 29
 - AST만드는 법을 공부해야겠다.
+
+#### 2020 / 05 / 01
+- AST만드는 법을 알아냈다. Antlr4에서 nonterminal에 label붙이는 것을 지원한다. 그러므로 쉽게 AST를 분석할 수 있다.
+- 추가적으로 visitor pattern과 listener pattern에 대해 알게 되었다.
+    - visitor pattern이 더욱 flexible하다고 볼 수 있지만, listener는 explicit stack을 사용하는 반면, visitor는 call stack을 사용한다. visitor는 그러므로 recursion이 너무 깊어질 경우 터질 위험이 있다.
+    - 근데, call stack이 아무리 깊어 봐야 100~1000단계를 넘을 수 있을까? 어지간한 상용 언어는 아무리 못해도 64단계는 버틴다.
+#### 2020 / 05 / 02
