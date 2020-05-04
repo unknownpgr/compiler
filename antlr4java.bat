@@ -1,0 +1,1 @@
+antlr4 Test.g4 -no-listener -visitor -o ./generated -package generated

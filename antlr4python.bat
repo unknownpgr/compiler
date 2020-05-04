@@ -1,1 +1,0 @@
-antlr4 -Dlanguage=Python3 Test.g4 -no-listener -visitor

@@ -1,4 +1,4 @@
-# A new language
+# Compiler for new language
 if나 for, while같은 제어 구문까지 override 가능한 언어를 만들고 싶은데.
 복잡하게 생각하지 말고, 다음과 같은 형식을 생각하자.
 
@@ -51,4 +51,10 @@ control(p1)
 - 추가적으로 visitor pattern과 listener pattern에 대해 알게 되었다.
     - visitor pattern이 더욱 flexible하다고 볼 수 있지만, listener는 explicit stack을 사용하는 반면, visitor는 call stack을 사용한다. visitor는 그러므로 recursion이 너무 깊어질 경우 터질 위험이 있다.
     - 근데, call stack이 아무리 깊어 봐야 100~1000단계를 넘을 수 있을까? 어지간한 상용 언어는 아무리 못해도 64단계는 버틴다.
+
 #### 2020 / 05 / 02
+- Antlr4에서 Visitor pattern을 제대로 사용해본다!
+
+#### 2020 / 05 / 04
+- 인터넷에 Python 예제가 너무 없어서, Java 예제를 사용하기로 한다.
+

@@ -2,3 +2,5 @@
 *.class
 .vscode
 __pycache__
+/bin/
+/bin/

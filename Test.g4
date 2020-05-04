@@ -3,8 +3,8 @@ grammar Test;
 s: code* EOF;
 
 code:
-	'(' code ')'																# skip
-	| '{' code* '}'																# skip
+	'(' code ')'																# parentheses
+	| '{' code* '}'																# parentheses
 	| code ';'																	# skip
 	| type_ id_																	# variable_definition
 	| type__ = type_ '(' ( | (param = id_ (',' param = id_)*)?) ')' body = code	# function_definition
@@ -14,7 +14,6 @@ code:
 	| operator = OP_UNI_1 operand = code										# unary_operation
 	| operand = code operator = OP_BIN_1 operand = code							# binary_operation
 	| operand = code operator = OP_BIN_2 operand = code							# binary_operation
-	| operand = code operator = OP_BIN_3 operand = code							# binary_operation
 	| operator = OP_UNI_3 operand = code										# unary_operation
 	| lhs = code '=' rhs = code													# assign;
 
