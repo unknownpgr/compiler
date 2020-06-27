@@ -11,17 +11,20 @@ var_def: 'var' id ( '=' exp)?;
 // Exp is a excution unit that returns a value.
 
 exp:
-	num										# exp_int
-	| id									# exp_id
-	| '(' exp ')'							# exp_bracket
-	| '!' exp								# op_not
-	| '*' lhs = exp '=' rhs = exp			# op_ptr_assign
-	| '*' exp								# op_pointer
-	| exp op = ( '++' | '--')				# op_inc_dec
-	| op = ( '+' | '-') exp					# op_sign
-	| lhs = exp op = ( '+' | '-') rhs = exp	# op_add_sub
-	| lhs = id '=' rhs = exp				# op_assign
-	| id '(' ( exp ( ',' exp)*)? ')'		# op_function_call;
+	num																	# exp_int
+	| id																# exp_id
+	| '(' exp ')'														# exp_bracket
+	| '!' exp															# op_not
+	| '*' lhs = exp '=' rhs = exp										# op_ptr_assign
+	| '*' exp															# op_pointer
+	| exp op = ( '++' | '--')											# op_inc_dec
+	| op = ( '+' | '-') exp												# op_sign
+	| exp '&' exp														# op_and
+	| exp '|' exp														# op_or
+	| lhs = exp op = ( '+' | '-') rhs = exp								# op_add_sub
+	| lhs = exp op = ('>' | '<' | '>=' | '<=' | '==' | '!=') rhs = exp	# op_comp
+	| lhs = id '=' rhs = exp											# op_assign
+	| id '(' ( exp ( ',' exp)*)? ')'									# op_function_call;
 
 code: var_def | exp;
 
@@ -36,7 +39,8 @@ while_def: 'while' '(' exp ')';
 control:
 	if_def codeblock else_def?	# ctrl_if
 	| while_def codeblock		# ctrl_while
-	| 'return' exp?				# ctrl_return;
+	| 'return' exp?				# ctrl_return
+	| 'continue'				# ctrl_continue;
 
 params: ( id ( ',' id)*);
 
