@@ -1,48 +1,62 @@
 grammar Test;
 
-s: code* EOF;
+@header {package target.generated;}
 
-code:
-	'(' code ')'																# parentheses
-	| '{' code* '}'																# parentheses
-	| code ';'																	# skip
-	| type_ id_																	# variable_definition
-	| type__ = type_ '(' ( | (param = id_ (',' param = id_)*)?) ')' body = code	# function_definition
-	| (type_int | type_float)													# number
-	| id_																		# id
-	| func = code '(' ( | (param = code (',' param = code)*)?) ')'				# function_call
-	| operator = OP_UNI_1 operand = code										# unary_operation
-	| operand = code operator = OP_BIN_1 operand = code							# binary_operation
-	| operand = code operator = OP_BIN_2 operand = code							# binary_operation
-	| operator = OP_UNI_3 operand = code										# unary_operation
-	| lhs = code '=' rhs = code													# assign;
+s: ( function_def | codeblock)* EOF;
 
-type_: 'int' | 'float';
+// Assignalbes
 
-id_: ID;
+var_def: 'var' id ( '=' exp)?;
 
-type_int: INT;
+// Exp is a excution unit that returns a value.
 
-type_float: FLOAT;
+exp:
+	num										# exp_int
+	| id									# exp_id
+	| '(' exp ')'							# exp_bracket
+	| '!' exp								# op_not
+	| '*' lhs = exp '=' rhs = exp			# op_ptr_assign
+	| '*' exp								# op_pointer
+	| exp op = ( '++' | '--')				# op_inc_dec
+	| op = ( '+' | '-') exp					# op_sign
+	| lhs = exp op = ( '+' | '-') rhs = exp	# op_add_sub
+	| lhs = id '=' rhs = exp				# op_assign
+	| id '(' ( exp ( ',' exp)*)? ')'		# op_function_call;
 
-OP_UNI_1: '!' | '~';
+code: var_def | exp;
 
-OP_BIN_1: '^' | '*' | '/' | '%' | '&';
+codeblock: control | code? ';' | '{' codeblock* '}';
 
-OP_BIN_2: '+' | '-' | '|';
+if_def: 'if' '(' exp ')';
 
-OP_BIN_3: '=';
+else_def: 'else' codeblock;
 
-OP_UNI_3: '+' | '-';
+while_def: 'while' '(' exp ')';
 
-ID: ('_' | [a-z] | [A-Z]) ( '_' | [a-z] | [A-Z] | [0-9])*;
+control:
+	if_def codeblock else_def?	# ctrl_if
+	| while_def codeblock		# ctrl_while
+	| 'return' exp?				# ctrl_return;
 
-INT: [1-9][0-9]*;
+params: ( id ( ',' id)*);
 
-FLOAT: INT [.]| INT [.]INT | [.]INT;
+function_def: 'function' id '(' params? ')' codeblock;
 
-WS: [ \t\r\n]+ -> skip; // skip spaces, tabs, newlines
+id: ID;
+
+num: INT;
+
+// Lex
+
+ID: ( '_' | [a-z] | [A-Z]) ( '_' | [a-z] | [A-Z] | [0-9])*;
+
+INT: '0' | [1-9] [0-9]*;
+
+// Skip rules
+
+WS: [ \t\r\n]+ -> skip;
 
 COMMENT_LINE: '//' ~[\r\n]* -> skip;
 
 COMMENT_BLOCK: '/*' .*? '*/' -> skip;
+

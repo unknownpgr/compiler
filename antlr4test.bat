@@ -1,9 +1,14 @@
 @echo off
 SET CLASSPATH=.;./antlr-4.8-complete.jar;%CLASSPATH%
-echo Generating java parser
-java org.antlr.v4.Tool Test.g4 -no-listener
-echo Compiling parser
-javac --release 8 *.java
+
+REM echo Generating java parser
+REM java org.antlr.v4.Tool Test.g4
+
+REM echo Compiling parser
+REM javac --release 8 *.java
+
 echo Generating graphics
-java org.antlr.v4.gui.TestRig Test s -tree < input.txt
+java org.antlr.v4.gui.TestRig target.generated.Test s -gui < input.txt
+
+echo Clearing generated files
 ./clear.bat

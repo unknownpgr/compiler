@@ -1,9 +1,75 @@
-int a;
-a = {
-    int a = 3
-    int b = 3
-    int c = a+a*b+(a + b)
-    c()
+// Draw vertical line
+var count 		= 8192;
+var screenPtr 	= 16384;
+while(count){
+	*screenPtr = 1;
+	count--;
+	screenPtr++;
+}
 
-    return d = (int (a,b,c){int a=d()()})()
+// Draw horizontal line
+var countY = 16;
+var countX = 0;
+screenPtr = 16384;
+while(countY){
+	countX = 32;
+	while(countX){
+		*screenPtr = -1;
+		screenPtr = screenPtr+1;
+		countX--;
+	}
+	screenPtr=screenPtr+480;
+	countY--;
+}
+
+// Do main task!
+var keyboardPtr = 24576;
+var key;
+var cursorX = 16;
+var cursorY = 8;
+
+
+var l1 = 5;
+var l2 = 9;
+var l3 = 13;
+var l4 = 17;
+var l5 = 21;
+var tmp;
+
+// screenPtr은 첫 번째 셀의 두 번째 row를 가리킨다.
+screenPtr = 16384+32;
+
+// X-move
+count = cursorX;
+while(count){
+	screenPtr++;
+	count--;
+}
+
+// Y-move
+count = cursorY;
+while(count){
+	screenPtr=screenPtr+480;
+	count--;
+}
+
+*screenPtr = l1;
+screenPtr=screenPtr+32;
+*screenPtr = l2;
+screenPtr=screenPtr+32;
+*screenPtr = l3;
+screenPtr=screenPtr+32;
+*screenPtr = l4;
+screenPtr=screenPtr+32;
+*screenPtr = l5;
+screenPtr=screenPtr+32;
+
+while(1){
+	key = *keyboardPtr;
+	if(key){
+		// key is not zero
+	}else{
+		// key is zero
+		// Do nothing
+	}	
 }
