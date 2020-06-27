@@ -15,20 +15,22 @@ exp:
 	| id																# exp_id
 	| '(' exp ')'														# exp_bracket
 	| '!' exp															# op_not
-	| '*' lhs = exp '=' rhs = exp										# op_ptr_assign
-	| '*' exp															# op_pointer
 	| exp op = ( '++' | '--')											# op_inc_dec
 	| op = ( '+' | '-') exp												# op_sign
 	| exp '&' exp														# op_and
 	| exp '|' exp														# op_or
 	| lhs = exp op = ( '+' | '-') rhs = exp								# op_add_sub
 	| lhs = exp op = ('>' | '<' | '>=' | '<=' | '==' | '!=') rhs = exp	# op_comp
+	| '*' lhs = exp '=' rhs = exp										# op_ptr_assign
+	| '*' exp															# op_pointer
 	| lhs = id '=' rhs = exp											# op_assign
 	| id '(' ( exp ( ',' exp)*)? ')'									# op_function_call;
 
-code: var_def | exp;
+asm: ASM;
 
-codeblock: control | code? ';' | '{' codeblock* '}';
+code: var_def | exp ;
+
+codeblock: control | code? ';' | '{' codeblock* '}'| asm;
 
 if_def: 'if' '(' exp ')';
 
@@ -51,6 +53,8 @@ id: ID;
 num: INT;
 
 // Lex
+
+ASM: 'asm' '{' [^{}]* '}';
 
 ID: ( '_' | [a-z] | [A-Z]) ( '_' | [a-z] | [A-Z] | [0-9])*;
 
